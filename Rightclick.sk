@@ -1,0 +1,31 @@
+on Rightclick holding a TNT:
+	cancel event
+	message "&7[&cServer&7]&cその行為は禁止しているぞ。"
+
+on Rightclick holding a fire charge:
+	player has permission "fire.charge":
+		name of held item contains "&6撃てるボール"
+		shoot a fireball from the player at speed 1
+
+on Rightclick holding a Golden hoe:
+	player has permission "golden.hoe"
+	name of held item contains "&6雷杖"
+	strike lightning at the target block
+
+on Rightclick holding a Snowball:
+	player has permission "snowball"
+	name of held item contains "&6最強の雪玉"
+
+on Rightclick holding a nether star:
+	player has permission "nether.star"
+	name of held item contains "&6ヒール"
+	set {_cooldown} to difference between {skill.%player%.lastused} and now
+	if {_cooldown} is less than 10 seconds:
+		message "&7[&cServer&7] &c残り10秒待ってください"
+		stop
+	clear {_cooldown.%player%}
+	set {skill.%player%.lastused} to now
+	heal the player by 3 hearts
+	player's health is below 3
+
+		
